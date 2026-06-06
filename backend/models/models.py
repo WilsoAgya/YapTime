@@ -7,21 +7,23 @@ from .database import Base
 class Post(Base):
     __tablename__ = "Posts"
 
-    id: Mapped[int] = mapped_column(primary_key=True)
+    post_id: Mapped[int] = mapped_column(primary_key=True,autoincrement=True)
     title: Mapped[str] = mapped_column(String(255))
     body: Mapped[str]
     slug: Mapped[str] = mapped_column(String(255))
+    tags: Mapped[str] = mapped_column(String(255))
     created_at:Mapped[datetime]
     sub_header: Mapped[str] = mapped_column(String(255))
-    author_id = mapped_column(ForeignKey("users.id"))
+    author_id = mapped_column(ForeignKey("users.user_id"))
 
 
 class Users(Base):
-    __tablename__ = "Users"
+    __tablename__ = "users"
 
-    id: Mapped[int] = mapped_column(primary_key=True)
+    user_id: Mapped[int] = mapped_column(primary_key=True,autoincrement=True)
     name: Mapped[str] = mapped_column(String(255))
     username: Mapped[str] = mapped_column(String(255))
+    password: Mapped[str] = mapped_column(String(50))
     admin: Mapped[bool] = mapped_column(Boolean, default=False)
 
 class Images(Base):

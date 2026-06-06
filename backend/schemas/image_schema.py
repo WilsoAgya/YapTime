@@ -1,8 +1,8 @@
 from typing import Optional
 from pydantic import BaseModel
 
-class Image(BaseModel):
-    id: int
+class ImageSchema(BaseModel):
+    user_id: int
     post_id: int
     filename: str
     url :str

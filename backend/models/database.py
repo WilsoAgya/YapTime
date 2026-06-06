@@ -8,7 +8,12 @@ load_dotenv()
 db_url = os.getenv("CONNECTION_STRING")
 
 engine = create_engine(db_url)
-SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
+SessionLocal = sessionmaker(
+    autocommit=False,
+    autoflush=False,
+    expire_on_commit=False,
+    bind=engine
+)
 
 
 class Base(DeclarativeBase):
